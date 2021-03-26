@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notitas</title>
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <header>
+        <nav>
+            <div class="brand-wrapper">
+                <div class="logo">
+                    <img src="images/logo.svg" alt="">
+                </div>
+            </div>        
+        </nav>
+    </header>
+
+    <main>
+        <section class="new">
+            <form action="" method='POST'>
+                <input type="text" name="title" placeholder="Título">
+                <textarea name="text" id="text" cols="30" placeholder="Añade una nota..."></textarea>
+                <button type="submit">Crear</button>
+            </form>
+        </section>
+        <section class="list">
+            <% for(let i=0; i<notas.length;i++){%>
+            <div class="notes">
+                <h2><%=notas[i].title%></h2>
+                <p><%=notas[i].text%></p>
+                <div class="edit">
+                    <a href="/edit/<%=notas[i].id_notes%>"><i class="far fa-edit"></i></a>
+                    <form action="/<%=notas[i].id_notes %>?_method=delete" method='POST'>
+                        <button type="submit"><i class="far fa-trash-alt"></i></button>
+                    </form>
+                </div>
+            </div><%}%>
+        </section>
+    </main>
+
+    <script src="https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.min.js"></script>
+    <script>
+        window.addEventListener('load', function() {
+            var elem = document.querySelector('.list');
+            var msnry = new Masonry( elem, {
+                itemSelector: '.note'
+            });
+        })
+    </script>
+</body>
+</html>
