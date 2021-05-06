@@ -5,7 +5,7 @@ module.exports={
     "database": "movies_db",//nombre de la BBDD
     "host": "127.0.0.1",
     "dialect": "mysql",
-    "port":"3306"
+    "port":"3000"
   },
   "test": {
     "username": "root",
@@ -13,7 +13,7 @@ module.exports={
     "database": "movies_db",
     "host": "127.0.0.1",
     "dialect": "mysql",
-    "port":"3306"
+    "port":"3000"
   },
   "production": {
     "username": "root",
@@ -21,6 +21,6 @@ module.exports={
     "database": "movies_db",
     "host": "127.0.0.1",
     "dialect": "mysql",
-    "port":"3306"
+    "port":"3000"
   }
 }

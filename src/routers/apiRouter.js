@@ -4,7 +4,7 @@ const apiController = require('../controllers/apiController');
 
 //ACTORES
 router.get('/actores',apiController.listadoActores);//lista
-router.post('/actores',apiController.creacion);//crear 
+router.post('/crear',apiController.creacion);//crear 
 router.delete('/actores/:id',apiController.delete);//eliminar 
 router.put('/actores/:id', apiController.update);//editar
 

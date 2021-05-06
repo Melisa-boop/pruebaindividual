@@ -78,7 +78,7 @@ creacion: function(req,res){
     })
 
     .then (function (actor){
-        return res.json(actor)
+        return res.json({actor:actor})
     })
     },
 }

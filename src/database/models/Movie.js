@@ -1,24 +1,34 @@
 
 
-module.exports =function (sequelize,DataTypes){
+module.exports =function (sequelize,dataTypes){
     let alias = "Movie"//nombre del modelo que le cedi a models( la BBDD se llama notes)
 
     let cols={
         id:{
-            type:DataTypes.INTEGER,
+            type:dataTypes.INTEGER,
             primaryKey:true,
             autoIncrement:true
         },
         title:{
-            type:DataTypes.STRING,
+            type:dataTypes.STRING,
         },
 
         rating:{
-            type:DataTypes.DECIMAL
+            type:dataTypes.DOUBLE
         },
 
         awards:{
-            type:DataTypes.INTEGER
+            type:dataTypes.INTEGER
+        },
+        length:{
+            type:dataTypes.INTEGER
+
+        },
+        genre_id:{
+            type: dataTypes.INTEGER
+        },
+        release_date:{
+            type:dataTypes.DATE
         }
   
     };
@@ -38,8 +48,14 @@ module.exports =function (sequelize,DataTypes){
         otherkey:"actor_id",
         timestamps:false,
         underscored:true
-
+    });
+    Movie.belongsToMany(models.Genero,{
+        as:"genero",
+        foreignKey:"genre_id",
+        timestamps:true,
+        underscored:true
     }
     )};
+    
     return Movie;
 };
