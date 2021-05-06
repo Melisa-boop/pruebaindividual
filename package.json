@@ -17,6 +17,8 @@
   },
   "homepage": "https://github.com/Melisa-boop/pruebaindividual#readme",
   "dependencies": {
+    "body-parser": "^1.19.0",
+    "discord.js": "^12.5.3",
     "ejs": "^3.1.5",
     "express": "^4.17.1",
     "method-override": "^3.0.0",
