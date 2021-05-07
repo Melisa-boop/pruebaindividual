@@ -81,4 +81,13 @@ creacion: function(req,res){
         return res.json({actor:actor})
     })
     },
+
+    detalle:function(req,res){
+        db.Actor.findByPk(req.params.id),{
+            include:{association:"movies"}
+        }
+        .then(function(actores){
+            return res.json ({actores:actores})
+        })
+    }
 }

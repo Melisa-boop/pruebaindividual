@@ -8,7 +8,7 @@ router.post('/crear',apiController.creacion);//crear
 router.delete('/actores/:id',apiController.delete);//eliminar 
 router.put('/actores/:id', apiController.update);//editar
 
-//router.get('/actores/:id',apiController.detalle);//por ID y su detalle
+router.get('/actores/:id',apiController.detalle);//por ID y su detalle
 router.get('/actores/search',apiController.search);//busqueda por ID
 
 
