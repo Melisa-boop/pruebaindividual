@@ -1,61 +1,60 @@
+module.exports = function ( sequelize, dataTypes )
+{
+	const alias = `Movie`;// nombre del modelo que le cedi a models( la BBDD se llama notes)
 
+	const cols = {
+		id: {
+			type          : dataTypes.INTEGER,
+			primaryKey    : true,
+			autoIncrement : true,
+		},
+		title: {
+			type: dataTypes.STRING,
+		},
 
-module.exports =function (sequelize,dataTypes){
-    let alias = "Movie"//nombre del modelo que le cedi a models( la BBDD se llama notes)
+		rating: {
+			type: dataTypes.DOUBLE,
+		},
 
-    let cols={
-        id:{
-            type:dataTypes.INTEGER,
-            primaryKey:true,
-            autoIncrement:true
-        },
-        title:{
-            type:dataTypes.STRING,
-        },
+		awards: {
+			type: dataTypes.INTEGER,
+		},
+		length: {
+			type: dataTypes.INTEGER,
 
-        rating:{
-            type:dataTypes.DOUBLE
-        },
+		},
+		genre_id: {
+			type: dataTypes.INTEGER,
+		},
+		release_date: {
+			type: dataTypes.DATE,
+		},
 
-        awards:{
-            type:dataTypes.INTEGER
-        },
-        length:{
-            type:dataTypes.INTEGER
+	};
+	const config = {
+		tableName   : `movies`,
+		timestamps  : true,
+		underscored : true,
 
-        },
-        genre_id:{
-            type: dataTypes.INTEGER
-        },
-        release_date:{
-            type:dataTypes.DATE
-        }
-  
-    };
-    let config={
-        tableName:'movies',
-        timestamps:true,
-        underscored: true
+	};
+	const Movie = sequelize.define( alias, cols, config );
+	Movie.associate = function ( models )
+	{
+		Movie.belongsToMany( models.Actor, {
+			as          : `actores`,
+			through     : `actor_movie`,
+			foreignKey  : `movie_id`,
+			otherkey    : `actor_id`,
+			timestamps  : true,
+			underscored : true,
+		} );
+		Movie.belongsTo( models.Genero, {
+			as          : `generos`,
+			foreignKey  : `genre_id`,
+			timestamps  : true,
+			underscored : true,
+		} );
+	};
 
-    }
-    const Movie =sequelize.define(alias,cols,config);
-    Movie.associate=function(models){
-
-    Movie.belongsToMany(models.Actor, {
-        as:"actores",
-        through:"actor_movie",
-        foreignKey:"movie_id",
-        otherkey:"actor_id",
-        timestamps:true,
-        underscored:true
-    });
-    Movie.belongsTo(models.Genero,{
-        as:"generos",
-        foreignKey:"genre_id",
-        timestamps:true,
-        underscored:true
-    }
-    )};
-    
-    return Movie;
+	return Movie;
 };

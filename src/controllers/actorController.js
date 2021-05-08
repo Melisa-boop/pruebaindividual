@@ -14,8 +14,13 @@ controller.list = ( req, res ) =>
 
 controller.search = ( req, res ) =>
 { // faltaria hacer la vista de search resoult// req.query.search(lo que el usuario busca)
+	console.log( req.query );
 	db.Actor.findAll( {
-		where: { first_name: req.query.search }, // loq ue el usuario busca
+		where: {
+			first_name: {
+				[db.Sequelize.Op.like]: `%${req.query.search}%`, // loq ue el usuario busca
+			},
+		},
 
 	} )
 		.then( ( resultado ) => res.json( {
@@ -74,10 +79,11 @@ controller.create = ( req, res ) =>
 
 controller.detail = ( req, res ) =>
 {
-	db.Actor.findByPk( req.params.id, {
-		include: { association: `movies` },
-	} )
-		.then( ( actores ) => res.json( { actores } ) );
+	db.Actor.findByPk( req.params.id ) // {
+		// include: { association: `movies` },
+	// } )
+		.then( ( actores ) => res.json( { actores } ) )
+		.catch( ( error ) => res.send( error ) );
 };
 
 module.exports = controller;
