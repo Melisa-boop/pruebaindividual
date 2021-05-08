@@ -1,7 +1,7 @@
 const express = require( `express` );
 
 const router = express.Router();
-const actorRouter = require( `./actor` );
+const actorRouter = require( `./actorRouter` );
 
 // Index
 router.get( `/`, ( _req, res ) =>
