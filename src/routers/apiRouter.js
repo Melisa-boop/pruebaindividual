@@ -3,6 +3,9 @@ const express = require( `express` );
 const router = express.Router();
 const apiController = require( `../controllers/apiController` );
 
+// Index
+router.get( `/`, ( _req, res ) => res.status( 200 ).send( `Index API` ) );
+
 // ACTORES
 router.get( `/actores`, apiController.listadoActores );// lista
 router.post( `/crear`, apiController.creacion );// crear
