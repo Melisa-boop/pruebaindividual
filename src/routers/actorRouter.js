@@ -1,15 +1,14 @@
 const express = require( `express` );
-
 const router = express.Router();
-const apiController = require( `../controllers/apiController` );
 
+const { actorController } = require( `../controllers` );
 // ACTORES
-router.get( `/`, apiController.listadoActores );// lista
-router.get( `/:id`, apiController.detalle );// por ID y su detalle
-router.get( `/search`, apiController.search );// busqueda por ID
+router.get( `/`, actorController.list );// lista
+router.get( `/:id`, actorController.detail );// por ID y su detalle
+router.get( `/search`, actorController.search );// busqueda por ID
 
-router.post( `/`, apiController.creacion );// crear
-router.put( `/:id`, apiController.update );// editar
-router.delete( `/:id`, apiController.delete );// eliminar
+router.post( `/`, actorController.create );// crear
+router.put( `/:id`, actorController.update );// editar
+router.delete( `/:id`, actorController.delete );// eliminar
 
 module.exports = router;
