@@ -1,7 +1,7 @@
 // Librerias
 const path = require( `path` );
 const bodyParser = require( `body-parser` );
-const { APP_PORT } = require( `./config` );
+const { APP_PORT } = require( `./config/constants` );
 
 // Express
 const express = require( `express` );
@@ -17,11 +17,11 @@ const apiRouter = require( `./routers/apiRouter` );
 app.set( `view engine`, `ejs` );
 app.set( `views`, path.join( __dirname, `views` ) );
 
-// Usamos methodOverride para poder implementar los métodos PUT y DELETE
 app.use( bodyParser.json() );
 app.use( express.urlencoded( { extended: true } ) );
 app.use( express.json() );
 
+// Usamos methodOverride para poder implementar los métodos PUT y DELETEß
 app.use( methodOverride( `_method` ) );
 
 // Seteamos la carpeta public con contenido estático
