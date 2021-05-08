@@ -1,38 +1,37 @@
 {
-  "name": "evaluacion",
-  "version": "1.0.0",
-  "description": "",
-  "main": "./src/app.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "nodemon ./src/app.js"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/Melisa-boop/pruebaindividual.git"
-  },
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/Melisa-boop/pruebaindividual/issues"
-  },
-  "homepage": "https://github.com/Melisa-boop/pruebaindividual#readme",
-  "dependencies": {
-    "body-parser": "1.19.0",
-    "discord.js": "12.5.3",
-    "dotenv": "9.0.0",
-    "ejs": "3.1.5",
-    "express": "4.17.1",
-    "method-override": "3.0.0",
-    "multer": "1.4.2",
-    "mysql2": "2.2.5",
-    "override": "0.0.1",
-    "sequelize": "6.3.5"
-  },
-  "devDependencies": {
-    "eslint": "7.26.0",
-    "eslint-config-airbnb-base": "14.2.1",
-    "eslint-plugin-import": "2.22.1",
-    "nodemon": "2.0.7"
-  }
+    "name": "evaluacion",
+    "version": "1.0.0",
+    "description": "",
+    "main": "./src/app.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "dev": "nodemon ./src/app.js"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/Melisa-boop/pruebaindividual.git"
+    },
+    "author": "",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/Melisa-boop/pruebaindividual/issues"
+    },
+    "homepage": "https://github.com/Melisa-boop/pruebaindividual#readme",
+    "dependencies": {
+        "discord.js": "12.5.3",
+        "dotenv": "9.0.0",
+        "ejs": "3.1.5",
+        "express": "4.17.1",
+        "method-override": "3.0.0",
+        "multer": "1.4.2",
+        "mysql2": "2.2.5",
+        "override": "0.0.1",
+        "sequelize": "6.3.5"
+    },
+    "devDependencies": {
+        "eslint": "7.26.0",
+        "eslint-config-airbnb-base": "14.2.1",
+        "eslint-plugin-import": "2.22.1",
+        "nodemon": "2.0.7"
+    }
 }

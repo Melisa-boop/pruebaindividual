@@ -1,6 +1,5 @@
 // Librerias
 const path = require( `path` );
-const bodyParser = require( `body-parser` );
 const { APP_PORT } = require( `./config/constants` );
 
 // Express
@@ -10,14 +9,12 @@ const app = express();
 const methodOverride = require( `method-override` );
 
 // Routers
-
 const apiRouter = require( `./routers` );
 
 // Configuramos el motor de vistas y la carpeta de vistas
 app.set( `view engine`, `ejs` );
 app.set( `views`, path.join( __dirname, `views` ) );
 
-app.use( bodyParser.json() );
 app.use( express.urlencoded( { extended: true } ) );
 app.use( express.json() );
 
