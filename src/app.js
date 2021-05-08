@@ -11,7 +11,7 @@ const methodOverride = require( `method-override` );
 
 // Routers
 
-const apiRouter = require( `./routers/apiRouter` );
+const apiRouter = require( `./routers` );
 
 // Configuramos el motor de vistas y la carpeta de vistas
 app.set( `view engine`, `ejs` );
