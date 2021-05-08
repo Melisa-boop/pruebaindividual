@@ -4,7 +4,11 @@ const router = express.Router();
 const apiController = require( `../controllers/apiController` );
 
 // Index
-router.get( `/`, ( _req, res ) => res.status( 200 ).send( `Index API` ) );
+router.get( `/`, ( _req, res ) =>
+{
+	res.set( `Content-Type`, `text/html` );
+	return res.status( 200 ).send( `<h1 style="text-align:center;">Index API<h1>` );
+} );
 
 // ACTORES
 router.get( `/actores`, apiController.listadoActores );// lista
