@@ -80,8 +80,8 @@ controller.create = ( req, res ) =>
 controller.detail = ( req, res ) =>
 {
 	db.Actor.findByPk( req.params.id ) // {
-		// include: { association: `movies` },
-	// } )
+		 include:[ { association: `movies` }]
+	 
 		.then( ( actores ) => res.json( { actores } ) )
 		.catch( ( error ) => res.send( error ) );
 };
