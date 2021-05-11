@@ -13,7 +13,7 @@ controller.list = ( req, res ) =>
 };
 
 controller.search = ( req, res ) =>
-{ // faltaria hacer la vista de search resoult// req.query.search(lo que el usuario busca)
+{ 
 	console.log( req.query );
 	db.Actor.findAll( {
 		where: {
@@ -79,10 +79,10 @@ controller.create = ( req, res ) =>
 
 controller.detail = ( req, res ) =>
 {
-	db.Actor.findByPk( req.params.id ) // {
-		 include:[ { association: `movies` }]
-	 
-		.then( ( actores ) => res.json( { actores } ) )
+	db.Actor.findByPk( req.params.id, {
+		 include: {all:true, nested:true }
+})
+		.then( ( actores ) => res.json( { actores : actores } ) )
 		.catch( ( error ) => res.send( error ) );
 };
 
