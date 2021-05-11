@@ -79,9 +79,9 @@ controller.create = ( req, res ) =>
 
 controller.detail = ( req, res ) =>
 {
-	db.Actor.findByPk( req.params.id ) // {
-		// include: { association: `movies` },
-	// } )
+	db.Actor.findByPk( req.params.id, {
+		include: { all: true, nested: true },
+	} )
 		.then( ( actores ) => res.json( { actores } ) )
 		.catch( ( error ) => res.send( error ) );
 };
