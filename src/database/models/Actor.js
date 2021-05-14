@@ -34,16 +34,28 @@ module.exports = function ( sequelize, dataTypes )
 
 	};
 	const Actor = sequelize.define( alias, cols, config );
+<<<<<<< HEAD
 	Actor.associate = function ( models )
 	{
+=======
+	 Actor.associate = function ( models )
+	 {
+>>>>>>> eb3c5585d790121367b7352f01451097501b455e
 	 Actor.belongsToMany( models.Movie, {
 	 as          : `movies`,
 	 through     : `actor_movie`,
 	 foreignKey  : `actor_id`,
 	 otherkey    : `movie_id`,
+<<<<<<< HEAD
 	 timestamps  : true,
 	 underscored : true,
 	 } );
 	 };
+=======
+	 timestamps  : false,
+			underscored : true,
+	 } );
+	};
+>>>>>>> eb3c5585d790121367b7352f01451097501b455e
 	return Actor;
 };

@@ -80,9 +80,15 @@ controller.create = ( req, res ) =>
 controller.detail = ( req, res ) =>
 {
 	db.Actor.findByPk( req.params.id, {
+<<<<<<< HEAD
 		 include: {all:true, nested:true }
 })
 		.then( ( actores ) => res.json( { actores : actores } ) )
+=======
+		include: { all: true, nested: true },
+	} )
+		.then( ( actores ) => res.json( { actores } ) )
+>>>>>>> eb3c5585d790121367b7352f01451097501b455e
 		.catch( ( error ) => res.send( error ) );
 };
 
