@@ -2,16 +2,17 @@
 const db = require( `../database/models/index` );
 
 const controller = {};
-
+//istado de actores GET
 controller.list = ( req, res ) =>
 {
 	db.Actor.findAll( {
 		include: { all: true },
 	} )
-		.then( ( actors ) => res.json( { actors } ) )
+		.then( ( actors ) => res.json( { actors:actors } ) )
 		.catch( ( error ) => res.send( error ) );
 };
 
+//buscador de actores
 controller.search = ( req, res ) =>
 { 
 	console.log( req.query );
@@ -32,7 +33,14 @@ controller.search = ( req, res ) =>
 			console.log( e );
 		} );
 };
+//formulario de edicion
+controller.updateForm =(req,res)=>
+{
+	db.Actor.findByPk(req.params.id)
+	.then( (actor) => res.json( {actor:actor } ) );
+};
 
+//modificacion de actores PUT
 controller.update = ( req, res ) =>
 {
 	db.Actor.update( {
@@ -50,7 +58,7 @@ controller.update = ( req, res ) =>
 	} )
 		.then( () => res.json( { success: `se ha modificado al pelicula` } ) );
 };
-
+//eliminacion de actores
 controller.delete = ( req, res ) =>
 {
 	db.Actor.destroy( {
@@ -61,9 +69,20 @@ controller.delete = ( req, res ) =>
 			id: req.params.id,
 		},
 	} )
-		.then( () => res.json( { success: `se ha borrado al pelicula` } ) );
+		.then( () => res.json( { success: `se ha borrado al pelicula` } )) 
+		.catch( ( error ) => res.send( error ) );
 };
 
+
+//formulario de creacion GET
+controller.createForm=(req, res)=>
+{
+	db.Actor.findAll()
+	.then ((actores)=>res.json ( {actores:actores}))
+  
+  };
+
+//creacion de actores  POST
 controller.create = ( req, res ) =>
 {
 	db.Actor.create( {
@@ -76,19 +95,13 @@ controller.create = ( req, res ) =>
 
 		.then( ( actor ) => res.json( { actor } ) );
 };
-
+//detalle de producto
 controller.detail = ( req, res ) =>
 {
-	db.Actor.findByPk( req.params.id, {
-<<<<<<< HEAD
-		 include: {all:true, nested:true }
-})
-		.then( ( actores ) => res.json( { actores : actores } ) )
-=======
+	db.Actor.findByPk(req.params.id, {
 		include: { all: true, nested: true },
 	} )
-		.then( ( actores ) => res.json( { actores } ) )
->>>>>>> eb3c5585d790121367b7352f01451097501b455e
+		.then( ( actores ) => res.json( { actores:actores } ) )
 		.catch( ( error ) => res.send( error ) );
 };
 
