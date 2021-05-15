@@ -29,6 +29,17 @@ module.exports = function ( sequelize, dataTypes )
 		release_date: {
 			type: dataTypes.DATE,
 		},
+		created_at: {
+            type: dataTypes.DATE
+        },
+        
+        updated_at: {
+            type: dataTypes.DATE
+        },
+        
+        deleted_at: {
+            type: dataTypes.DATE
+        },
 
 	};
 	const config = {

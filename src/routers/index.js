@@ -2,6 +2,7 @@ const express = require( `express` );
 
 const router = express.Router();
 const actorRouter = require( `./actorRouter` );
+const moviesRouter=require(`./moviesRouter`);
 
 // Index
 router.get( `/`, ( _req, res ) =>
@@ -11,5 +12,6 @@ router.get( `/`, ( _req, res ) =>
 } );
 
 router.use( `/actores`, actorRouter );
+router.use(`/movies`, moviesRouter )
 
 module.exports = router;
