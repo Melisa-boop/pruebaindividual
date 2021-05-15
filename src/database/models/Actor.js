@@ -23,9 +23,25 @@ module.exports = function ( sequelize, dataTypes )
 		image: {
 			type: dataTypes.STRING,
 		},
-		/* favourite_movie_id: {
-			type: dataTypes.INTEGER,
-		}, */
+
+	   historia: {
+			type: dataTypes.STRING,
+		},
+		edad: {
+			type    : dataTypes.INTEGER,
+			notNull : true,
+		},
+		deleted_at: {
+			type: dataTypes.DATE,
+		},
+		created_at: {
+			type: dataTypes.DATE,
+		},
+
+		updated_at: {
+			type: dataTypes.DATE,
+		},
+
 	};
 	const config = {
 		tableName   : `actors`,
@@ -35,7 +51,7 @@ module.exports = function ( sequelize, dataTypes )
 	};
 	const Actor = sequelize.define( alias, cols, config );
 	 Actor.associate = function ( models )
-	 {
+	{
 	 Actor.belongsToMany( models.Movie, {
 	 as          : `movies`,
 	 through     : `actor_movie`,

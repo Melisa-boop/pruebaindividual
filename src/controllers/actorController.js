@@ -49,7 +49,9 @@ controller.update = ( req, res ) =>
 		last_name          : req.body.last_name,
 		image              : ( req.file ? req.file.filename : req.body.image ),
 		rating             : req.body.rating,
-		favourite_movie_id : req.body.favourite_movie_id,
+		edad               : req.body.edad,
+		historia           :req.body.historia,
+		
 
 	},
 	{
@@ -57,7 +59,7 @@ controller.update = ( req, res ) =>
 			id: req.params.id,
 		},
 	} )
-		.then( () => res.json( { success: `se ha modificado al pelicula` } ) );
+		.then( () => res.json( { success: `se ha modificado al pelicula` } ) )
 };
 //eliminacion de actores
 controller.delete = ( req, res ) =>
@@ -94,7 +96,8 @@ controller.create = ( req, res ) =>
 		favourite_movie_id : req.body.favourite_movie_id,
 	} )
 
-		.then( ( actor ) => res.json( { actor } ) );
+		.then( ( actor ) => res.json( { actor:actor } ) );
+		
 };
 //detalle de producto
 controller.detail = ( req, res ) =>
@@ -105,5 +108,4 @@ controller.detail = ( req, res ) =>
 		.then( ( actores ) => res.json( { actores:actores } ) )
 		.catch( ( error ) => res.send( error ) );
 };
-
 module.exports = controller;

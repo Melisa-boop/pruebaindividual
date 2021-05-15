@@ -2,7 +2,8 @@ const express = require( `express` );
 
 const router = express.Router();
 const actorRouter = require( `./actorRouter` );
-const moviesRouter=require(`./moviesRouter`);
+const moviesRouter = require( `./moviesRouter` );
+const userRouter = require( `./userRouter` );
 
 // Index
 router.get( `/`, ( _req, res ) =>
@@ -12,6 +13,7 @@ router.get( `/`, ( _req, res ) =>
 } );
 
 router.use( `/actores`, actorRouter );
-router.use(`/movies`, moviesRouter )
+router.use( `/movies`, moviesRouter );
+router.use( `/users`, userRouter );
 
 module.exports = router;

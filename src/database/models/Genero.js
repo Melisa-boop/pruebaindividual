@@ -15,6 +15,16 @@ module.exports = function ( sequelize, dataTypes )
 			type: dataTypes.INTEGER,
 		},
 
+		deleted_at: {
+			type: dataTypes.DATE,
+		},
+		created_at: {
+			type: dataTypes.DATE,
+		},
+		updated_at: {
+			type: dataTypes.DATE,
+		},
+
 	};
 	const config = {
 		tableName   : `genres`,
