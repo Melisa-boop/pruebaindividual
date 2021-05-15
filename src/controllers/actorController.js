@@ -13,7 +13,7 @@ controller.list = ( req, res ) =>
 };
 
 controller.search = ( req, res ) =>
-{ // faltaria hacer la vista de search resoult// req.query.search(lo que el usuario busca)
+{
 	console.log( req.query );
 	db.Actor.findAll( {
 		where: {
