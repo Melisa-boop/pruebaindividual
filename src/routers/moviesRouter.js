@@ -1,17 +1,28 @@
+const multer = require( `multer` );
+const path = require( `path` );
+
 const express = require( `express` );
 const router = express.Router();
 
-const {moviesController} = require( `../controllers` );
+const storage = multer.diskStorage( {
+	destination( req, file, cb )
+	{
+		cb( null, path.join( __dirname, `../../images/movies` ) );
+	},
+	filename( req, file, cb )
+	{
+		cb( null, `${req.body.email}-${Date.now()}${path.extname( file.originalname )}` );
+	},
+} );
 
-// MOVIES
-router.get( `/list`, moviesController.list );// lista de movies
-router.get( `/:id`, moviesController.detail );// detalle de peliculas y  personajes asociados
-router.get( `/search`, actorController.search );// busqueda por ID
+const upload = multer( { storage } );
 
-router.get( `/create`,actorController.createForm)// formulario de creacion
-router.post( `/create`, actorController.create );// crear un nuevo actor
-router.get(`/edit/:id`, actorController.updateForm )//formulario de editar un actor
-router.put( `/edit/:id`, actorController.update );// editar un actor
-router.delete( `/edit/:id`, actorController.delete );// eliminar un actor
+const { moviesController } = require( `../controllers` );
 
+// MOVIES, actorController.search );// busqueda por ID
+router.get( `list`, moviesController.list );// listado de peliculas
+// router.get( `:id`, moviesController.detail );// detalle de las peliculas
+router.post( `create`, moviesController.create );// creacxion de uan peliculas
+router.put( `edit`, moviesController.edit );// edicion de una pelicula
+router.delete( `delete`, moviesController.delete );// eliminacion de una pelicula
 module.exports = router;

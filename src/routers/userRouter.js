@@ -12,6 +12,6 @@ router.post( `/register`, registerValidator, userController.register );
 
 // usuarios
 // GET login auth/login
-router.post( `/login`, loginValidator, userController.login );
+router.post( `/login`, userController.login, userController.createToken );
 
 module.exports = router;

@@ -2,20 +2,23 @@
 const db = require( `../database/models/index` );
 
 const controller = {};
-//istado de actores GET
+
+// istado de actores GET
 controller.list = ( req, res ) =>
 {
-	db.Actor.findAll( {
-		include: { all: true },
-	} )
-		.then( ( actors ) => res.json( { actors:actors } ) )
+	db.Actor.findAll(
+		{
+		 include: { all: true },
+		},
+	)
+		.then( ( actors ) => res.json( { actors } ) )
 		.catch( ( error ) => res.send( error ) );
 };
 
-//buscador de actores
+// buscador de actores
 controller.search = ( req, res ) =>
+
 {
-{ 
 	console.log( req.query );
 	db.Actor.findAll( {
 		where: {
@@ -34,24 +37,23 @@ controller.search = ( req, res ) =>
 			console.log( e );
 		} );
 };
-//formulario de edicion
-controller.updateForm =(req,res)=>
+// formulario de edicion
+controller.updateForm = ( req, res ) =>
 {
-	db.Actor.findByPk(req.params.id)
-	.then( (actor) => res.json( {actor:actor } ) );
+	db.Actor.findByPk( req.params.id )
+		.then( ( actor ) => res.json( { actor } ) );
 };
 
-//modificacion de actores PUT
+// modificacion de actores PUT
 controller.update = ( req, res ) =>
 {
 	db.Actor.update( {
-		first_name         : req.body.first_name,
-		last_name          : req.body.last_name,
-		image              : ( req.file ? req.file.filename : req.body.image ),
-		rating             : req.body.rating,
-		edad               : req.body.edad,
-		historia           :req.body.historia,
-		
+		first_name : req.body.first_name,
+		last_name  : req.body.last_name,
+		image      : ( req.file ? req.file.filename : req.body.image ),
+		rating     : req.body.rating,
+		edad       : req.body.edad,
+		historia   : req.body.historia,
 
 	},
 	{
@@ -59,9 +61,9 @@ controller.update = ( req, res ) =>
 			id: req.params.id,
 		},
 	} )
-		.then( () => res.json( { success: `se ha modificado al pelicula` } ) )
+		.then( () => res.json( { success: `se ha modificado el actor` } ) );
 };
-//eliminacion de actores
+
 controller.delete = ( req, res ) =>
 {
 	db.Actor.destroy( {
@@ -72,20 +74,18 @@ controller.delete = ( req, res ) =>
 			id: req.params.id,
 		},
 	} )
-		.then( () => res.json( { success: `se ha borrado al pelicula` } )) 
+		.then( () => res.json( { success: `se ha borrado la pelicula` } ) )
 		.catch( ( error ) => res.send( error ) );
 };
 
-
-//formulario de creacion GET
-controller.createForm=(req, res)=>
+// formulario de creacion GET
+controller.createForm = ( req, res ) =>
 {
 	db.Actor.findAll()
-	.then ((actores)=>res.json ( {actores:actores}))
-  
-  };
+		.then( ( actores ) => res.json( { actores } ) );
+};
 
-//creacion de actores  POST
+// creacion de actores  POST
 controller.create = ( req, res ) =>
 {
 	db.Actor.create( {
@@ -96,16 +96,16 @@ controller.create = ( req, res ) =>
 		favourite_movie_id : req.body.favourite_movie_id,
 	} )
 
-		.then( ( actor ) => res.json( { actor:actor } ) );
-		
+		.then( ( actor ) => res.json( { actor } ) );
 };
-//detalle de producto
+// detalle de producto
 controller.detail = ( req, res ) =>
 {
-	db.Actor.findByPk(req.params.id, {
+	db.Actor.findByPk( req.params.id, {
 		include: { all: true, nested: true },
 	} )
-		.then( ( actores ) => res.json( { actores:actores } ) )
+		.then( ( actores ) => res.json( { actores } ) )
 		.catch( ( error ) => res.send( error ) );
 };
+
 module.exports = controller;

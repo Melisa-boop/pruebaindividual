@@ -8,6 +8,22 @@ const express = require( `express` );
 const app = express();
 const methodOverride = require( `method-override` );
 
+// multer
+const multer = require( `multer` );
+
+const storage = multer.diskStorage( {
+	destination( req, file, cb )
+	{
+		cb( null, path.join( __dirname, `../public/images` ) );
+	},
+	filename( req, file, cb )
+	{
+		cb( null, `${file.fieldname}-${Date.now()}${path.extname( file.originalname )}` );
+	},
+} );
+
+const upload = multer( { storage } );
+
 // Routers
 const apiRouter = require( `./routers` );
 
@@ -15,7 +31,7 @@ const apiRouter = require( `./routers` );
 app.set( `view engine`, `ejs` );
 app.set( `views`, path.join( __dirname, `views` ) );
 
-app.use( express.urlencoded( { extended: true } ) );
+app.use( express.urlencoded( { extended: false } ) );
 app.use( express.json() );
 
 // Usamos methodOverride para poder implementar los métodos PUT y DELETEß

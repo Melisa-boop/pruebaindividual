@@ -1,6 +1,8 @@
 // Database
 const db = require( `../database/models/index` );
 const bcrypt = require( `bcrypt` );
+const moment = require( `moment` );
+const jwt = require( `jwt-simple` );
 
 // validaciones
 const { validationResult } = require( `express-validator` );
@@ -34,10 +36,26 @@ controller.login = async ( req, res ) =>
 	const user = await db.Usuario.findOne( { where: { email: req.body.email } } );
 	if ( user )
 	{
+		const iguales = bcrypt.compareSync( req.body.password, user.password );
+		if ( iguales )
+		{
+			res.json( { success: this.createToken( user ) } );
+		}
 	}
 	else
 	{
-		res.json( { error: `error en el usuario que se se quiere loguear` } );
+		res.json( { error: `error en el usuario y/o contrasena` } );
 	}
+};
+
+controller.createToken = ( user ) =>
+{
+	const payload = {
+		usuarioId : user.id, // encripto el token
+		createdAt : moment().unix(),
+		expiredAt : moment().add( 5, `minutes` ).unix(),
+
+	};
+	return jwt.encode( payload, `frase secreta` );// me devuelve el token
 };
 module.exports = controller;
