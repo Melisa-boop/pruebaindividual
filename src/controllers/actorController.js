@@ -17,7 +17,6 @@ controller.list = ( req, res ) =>
 
 // buscador de actores
 controller.search = ( req, res ) =>
-
 {
 	console.log( req.query );
 	db.Actor.findAll( {

@@ -1,4 +1,4 @@
-module.exports = function ( sequelize, dataTypes )
+module.exports = ( sequelize, dataTypes ) =>
 {
 	const alias = `Actor`;// nombre del modelo que le cedi a models( la BBDD se llama notes)
 
@@ -24,7 +24,7 @@ module.exports = function ( sequelize, dataTypes )
 			type: dataTypes.STRING,
 		},
 
-	   historia: {
+		historia: {
 			type: dataTypes.STRING,
 		},
 		edad: {
@@ -43,23 +43,26 @@ module.exports = function ( sequelize, dataTypes )
 		},
 
 	};
+
 	const config = {
 		tableName   : `actors`,
 		timestamps  : true,
 		underscored : true,
 
 	};
+
 	const Actor = sequelize.define( alias, cols, config );
-	 Actor.associate = function ( models )
+	Actor.associate = ( models ) =>
 	{
-	 Actor.belongsToMany( models.Movie, {
-	 as          : `movies`,
-	 through     : `actor_movie`,
-	 foreignKey  : `actor_id`,
-	 otherkey    : `movie_id`,
-	 timestamps  : false,
+		Actor.belongsToMany( models.Movie, {
+			as          : `movies`,
+			through     : `actor_movie`,
+			foreignKey  : `actor_id`,
+			otherkey    : `movie_id`,
+			timestamps  : false,
 			underscored : true,
-	 } );
+		} );
 	};
+
 	return Actor;
 };

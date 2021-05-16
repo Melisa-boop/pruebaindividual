@@ -1,4 +1,4 @@
-module.exports = function ( sequelize, dataTypes )
+module.exports = ( sequelize, dataTypes ) =>
 {
 	const alias = `Genero`;
 
@@ -26,14 +26,16 @@ module.exports = function ( sequelize, dataTypes )
 		},
 
 	};
+
 	const config = {
 		tableName   : `genres`,
 		timestamps  : true,
 		underscored : true,
 
 	};
+
 	const Genero = sequelize.define( alias, cols, config );
-	Genero.associate = function ( models )
+	Genero.associate = ( models ) =>
 	{
 		Genero.hasMany( models.Movie, {
 			as          : `movies`,
@@ -43,5 +45,6 @@ module.exports = function ( sequelize, dataTypes )
 
 		} );
 	};
+
 	return Genero;
 };
