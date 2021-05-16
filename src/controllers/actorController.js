@@ -8,7 +8,7 @@ controller.list = ( req, res ) =>
 {
 	db.Actor.findAll(
 		{
-		 include: { all: true },
+			include: { all: true },
 		},
 	)
 		.then( ( actors ) => res.json( { actors } ) )
@@ -98,6 +98,7 @@ controller.create = ( req, res ) =>
 
 		.then( ( actor ) => res.json( { actor } ) );
 };
+
 // detalle de producto
 controller.detail = ( req, res ) =>
 {
