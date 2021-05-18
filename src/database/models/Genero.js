@@ -31,7 +31,6 @@ module.exports = ( sequelize, dataTypes ) =>
 		tableName   : `genres`,
 		timestamps  : true,
 		underscored : true,
-
 	};
 
 	const Genero = sequelize.define( alias, cols, config );

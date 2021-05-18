@@ -48,7 +48,6 @@ module.exports = ( sequelize, dataTypes ) =>
 		tableName   : `actors`,
 		timestamps  : true,
 		underscored : true,
-
 	};
 
 	const Actor = sequelize.define( alias, cols, config );

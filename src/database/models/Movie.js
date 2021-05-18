@@ -46,8 +46,8 @@ module.exports = ( sequelize, dataTypes ) =>
 		tableName   : `movies`,
 		timestamps  : true,
 		underscored : true,
-
 	};
+
 	const Movie = sequelize.define( alias, cols, config );
 	Movie.associate = ( models ) =>
 	{
