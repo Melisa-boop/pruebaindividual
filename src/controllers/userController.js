@@ -17,7 +17,7 @@ controller.register = ( req, res ) =>
 	const errors = validationResult( req );
 	if ( !errors.isEmpty() )
 	{
-		return res.status( 422 ).json( { error: error.mapped() } );
+		return res.status( 422 ).json( { errors } );
 	}
 
 	db.Usuario.create( {
@@ -39,7 +39,7 @@ controller.login = async ( req, res ) =>
 		const iguales = bcrypt.compareSync( req.body.password, user.password );
 		if ( iguales )
 		{
-			res.json( { success: this.createToken( user ) } );
+			res.json( { success: this.createToken( user ) } );// crea el token
 		}
 	}
 	else
