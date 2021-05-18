@@ -2,7 +2,7 @@
 
 const { check } = require( `express-validator` );
 
-const db = require( `../database/models/index` );
+const db = require( `../../database/models/index` );
 
 module.exports = [
 	check( `name` )
