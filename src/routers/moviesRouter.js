@@ -15,7 +15,7 @@ const storage = multer.diskStorage( {
 	},
 } );
 
-const upload = multer( { storage } );
+multer( { storage } );
 
 const { moviesController } = require( `../controllers` );
 
