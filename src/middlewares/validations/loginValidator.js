@@ -1,4 +1,4 @@
-// loginValidator valida los datos del Form de Login
+//  valida los datos del Form de Login
 
 const { check } = require( `express-validator` );
 

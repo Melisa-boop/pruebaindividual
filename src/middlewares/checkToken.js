@@ -1,7 +1,14 @@
 const jwt = require( `jwt-simple` );
 const moment = require( `moment` );
 
-const checkToken = ( req, res, next ) =>// todos los que se quieran conectar precisan pasr por al cabecera
+/**
+ * Check's if the request has the auth token
+ * @param {*} req
+ * @param {*} res
+ * @param {*} next
+ * @returns next() if is valid | status 400 if not
+ */
+const checkToken = ( req, res, next ) =>
 {
 	if ( !req.headers[`user-token`] )
 	{ // el token se encuentra en al cabcera?
@@ -16,16 +23,17 @@ const checkToken = ( req, res, next ) =>// todos los que se quieran conectar pre
 	}
 	catch ( error )
 	{
-		return res.json( { error: `el token es incorrecto` } );
+		return res.status( 400 ).json( { error: `el token es incorrecto` } );
 	}
 	if ( payload.expiredAt < moment().unix() )
 	{
-		return res.json( { error: `el token ha expirado` } );
+		return res.status( 400 ).json( { error: `el token ha expirado` } );
 	}
 	req.usuarioId = payload.usuarioId;// para menejarlo en las rutas
 
-	next();
+	return next();
 };
+
 module.exports = {
 	checkToken,
 };

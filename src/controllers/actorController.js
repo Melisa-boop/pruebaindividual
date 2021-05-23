@@ -8,16 +8,15 @@ controller.list = ( req, res ) =>
 {
 	db.Actor.findAll(
 		{
-		 include: { all: true },
+			include: { all: true },
 		},
 	)
 		.then( ( actors ) => res.json( { actors } ) )
-		.catch( ( error ) => res.send( error ) );
+	    .catch( ( error ) => res.send( error ) );
 };
 
 // buscador de actores
 controller.search = ( req, res ) =>
-
 {
 	console.log( req.query );
 	db.Actor.findAll( {
@@ -36,12 +35,6 @@ controller.search = ( req, res ) =>
 		{
 			console.log( e );
 		} );
-};
-// formulario de edicion
-controller.updateForm = ( req, res ) =>
-{
-	db.Actor.findByPk( req.params.id )
-		.then( ( actor ) => res.json( { actor } ) );
 };
 
 // modificacion de actores PUT
@@ -78,13 +71,6 @@ controller.delete = ( req, res ) =>
 		.catch( ( error ) => res.send( error ) );
 };
 
-// formulario de creacion GET
-controller.createForm = ( req, res ) =>
-{
-	db.Actor.findAll()
-		.then( ( actores ) => res.json( { actores } ) );
-};
-
 // creacion de actores  POST
 controller.create = ( req, res ) =>
 {
@@ -98,6 +84,7 @@ controller.create = ( req, res ) =>
 
 		.then( ( actor ) => res.json( { actor } ) );
 };
+
 // detalle de producto
 controller.detail = ( req, res ) =>
 {

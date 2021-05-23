@@ -1,8 +1,8 @@
-module.exports = function ( sequelize, dataTypes )
+module.exports = ( sequelize, dataTypes ) =>
 {
-	const alias = `Usuario`;
-	const cols = {
+	const alias = `User`;
 
+	const cols = {
 		id: {
 			type          : dataTypes.INTEGER.UNSIGNED,
 			notNull       : true,
@@ -46,7 +46,7 @@ module.exports = function ( sequelize, dataTypes )
 		updatedAt   : `updated_at`,
 	};
 
-	const Usuario = sequelize.define( alias, cols, config );
+	const User = sequelize.define( alias, cols, config );
 
-	return Usuario;
+	return User;
 };

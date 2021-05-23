@@ -1,8 +1,8 @@
 // registerValidator valida los datos del Form de Registro
 
-const { check, body } = require( `express-validator` );
+const { check } = require( `express-validator` );
 
-const db = require( `../database/models/index` );
+const db = require( `../../database/models/index` );
 
 module.exports = [
 	check( `name` )
@@ -37,7 +37,7 @@ module.exports = [
 		.notEmpty().withMessage( `El campo no puede estar vacío` )
 		.isLength( { min: 8, max: 15 } )
 		.withMessage( `La contraseña debe contener como mínimo 8 caracteres` )
-		.custom( async ( repassword, { req } ) =>
+		.custom( ( repassword, { req } ) =>
 		{
 			const { password } = req.body;
 			if ( password !== repassword )

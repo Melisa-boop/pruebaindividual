@@ -1,5 +1,7 @@
 // Database
 const db = require( `../database/models/index` );
+const fs = require( `fs` );
+const path = require( `path` );
 
 const controller = {};
 
@@ -11,7 +13,7 @@ controller.list = ( req, res ) =>
 			include: { all: true },
 		},
 	)
-		.then( ( films ) => res.json( { films } ) )
+		.then( ( movies ) => res.json( { movies } ) )
 		.catch( ( error ) => res.send( error ) );
 };
 
@@ -19,23 +21,30 @@ controller.list = ( req, res ) =>
 controller.create = ( req, res ) =>
 {
 	db.Movie.create( {
-		title    : req.body.title,
-		rating   : req.body.rating,
-		awards   : req.body.awards,
-		genre_id : req.body.genre_id,
+		title        : req.body.title,
+		rating       : req.body.rating,
+		awards       : req.body.awards,
+		genre_id     : req.body.genre_id,
+		image        : req.files[0].filename,
+		release_date : req.body.release_date,
+		length       : req.body.length,
 
 	} )
-		.then( ( films ) => res.json( { films } ) );
+		.then( ( movies ) => res.json( { movies } ) )
+		.catch( ( error ) => res.send( error ) );
 };
 
 // editar una pelicula
 controller.edit = ( req, res ) =>
 {
 	db.Movie.update( {
-		title    : req.body.title,
-		rating   : req.body.rating,
-		awards   : req.body.awards,
-		genre_id : req.body.genre_id,
+		title        : req.body.title,
+		rating       : req.body.rating,
+		awards       : req.body.awards,
+		genre_id     : req.body.genre_id,
+		image        : req.files[0].filename,
+		release_date : req.body.release_date,
+		length       : req.body.length,
 
 	},
 	{
@@ -54,5 +63,16 @@ controller.delete = ( req, res ) =>
 		where: { id: req.params.id },
 	} )
 		.then( () => res.json( { success: `la pelicila ha sido eliminada` } ) );
+};
+
+controller.detail = ( req, res ) =>
+{
+	db.Movie.findByPk( {
+		where   : { id: req.params.id },
+		include : { all: true },
+
+	} )
+		.then( ( movies ) => res.json( { movies } ) )
+		.catch( ( error ) => res.send( error ) );
 };
 module.exports = controller;

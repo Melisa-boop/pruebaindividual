@@ -1,35 +1,43 @@
+const {
+	DB_NAME,
+	DB_HOST,
+	DB_PORT,
+	DB_USERNAME,
+	DB_PASSWORD,
+} = require( `../../config/constants` );
+
 module.exports = {
 	development: {
-		username : `root`,
-		password : null,
-		database : `movies_db`, // nombre de la BBDD
-		host     : `127.0.0.1`,
+		username : DB_USERNAME,
+		password : DB_PASSWORD,
+		database : DB_NAME, // nombre de la BBDD
+		host     : DB_HOST,
 		dialect  : `mysql`,
-		port     : `3306`,
+		port     : DB_PORT,
 		define   : {
 			timestamps  : true,
 			underscored : true,
 		},
 	},
 	test: {
-		username : `root`,
-		password : null,
-		database : `movies_db`,
-		host     : `127.0.0.1`,
+		username : DB_USERNAME,
+		password : DB_PASSWORD,
+		database : DB_NAME,
+		host     : DB_HOST,
 		dialect  : `mysql`,
-		port     : `3306`,
+		port     : DB_PORT,
 		define   : {
 			timestamps  : true,
 			underscored : true,
 		},
 	},
 	production: {
-		username : `root`,
-		password : null,
-		database : `movies_db`,
-		host     : `127.0.0.1`,
+		username : DB_USERNAME,
+		password : DB_PASSWORD,
+		database : DB_NAME,
+		host     : DB_HOST,
 		dialect  : `mysql`,
-		port     : `3306`,
+		port     : DB_PORT,
 		define   : {
 			timestamps  : true,
 			underscored : true,

@@ -22,7 +22,7 @@ const storage = multer.diskStorage( {
 	},
 } );
 
-const upload = multer( { storage } );
+multer( { storage } );
 
 // Routers
 const apiRouter = require( `./routers` );

@@ -1,4 +1,4 @@
-module.exports = function ( sequelize, dataTypes )
+module.exports = ( sequelize, dataTypes ) =>
 {
 	const alias = `Movie`;// nombre del modelo que le cedi a models( la BBDD se llama notes)
 
@@ -26,6 +26,10 @@ module.exports = function ( sequelize, dataTypes )
 		genre_id: {
 			type: dataTypes.INTEGER,
 		},
+		image: {
+			type    : dataTypes.STRING,
+			notNull : true,
+	    },
 		release_date: {
 			type: dataTypes.DATE,
 		},
@@ -46,10 +50,12 @@ module.exports = function ( sequelize, dataTypes )
 		tableName   : `movies`,
 		timestamps  : true,
 		underscored : true,
-
+		createdAt   : `created_at`,
+		updatedAt   : `updated_at`,
 	};
+
 	const Movie = sequelize.define( alias, cols, config );
-	Movie.associate = function ( models )
+	Movie.associate = ( models ) =>
 	{
 		Movie.belongsToMany( models.Actor, {
 			as          : `actores`,
