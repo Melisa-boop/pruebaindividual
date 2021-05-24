@@ -4,7 +4,7 @@ const router = express.Router();
 const actorRouter = require( `./actorRouter` );
 const moviesRouter = require( `./moviesRouter` );
 const userRouter = require( `./userRouter` );
-const middleware = require( `../middlewares/checkToken` );// todas las rutas de movies deben pasar por un token
+const middlewares = require( `../middlewares/checkToken` );// todas las rutas de movies deben pasar por un token
 
 // Index
 router.get( `/`, ( _req, res ) =>
@@ -14,7 +14,7 @@ router.get( `/`, ( _req, res ) =>
 } );
 
 router.use( `/actores`, actorRouter );
-router.use( `/movies`, middleware.checkToken, moviesRouter );
+router.use( `/movies`, middlewares.checkToken, moviesRouter );
 router.use( `/users`, userRouter );
 
 module.exports = router;

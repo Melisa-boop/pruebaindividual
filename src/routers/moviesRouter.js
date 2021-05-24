@@ -24,5 +24,5 @@ router.get( `/list`, moviesController.list );// listado de peliculas
 router.get( `/:id`, moviesController.detail );// detalle de las peliculas
 router.post( `/create`, upload.any(), moviesController.create );// creacion de uan peliculas
 router.put( `/edit/:id`, upload.any(), moviesController.edit );// edicion de una pelicula
-router.delete( `/delete`, moviesController.delete );// eliminacion de una pelicula
+router.delete( `/delete/:id`, moviesController.delete );// eliminacion de una pelicula
 module.exports = router;

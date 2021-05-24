@@ -41,12 +41,13 @@ controller.search = ( req, res ) =>
 controller.update = ( req, res ) =>
 {
 	db.Actor.update( {
+		id         : req.body.id,
 		first_name : req.body.first_name,
 		last_name  : req.body.last_name,
 		image      : ( req.file ? req.file.filename : req.body.image ),
-		rating     : req.body.rating,
 		edad       : req.body.edad,
 		historia   : req.body.historia,
+		// favorite_movie_id : req.body.favourite_movie_id,
 
 	},
 	{
@@ -75,11 +76,13 @@ controller.delete = ( req, res ) =>
 controller.create = ( req, res ) =>
 {
 	db.Actor.create( {
-		first_name         : req.body.first_name,
-		last_name          : req.body.last_name,
-		image              : ( req.file ? req.file.filename : req.body.image ),
-		rating             : req.body.rating,
-		favourite_movie_id : req.body.favourite_movie_id,
+		first_name : req.body.first_name,
+		last_name  : req.body.last_name,
+		image      : ( req.file ? req.file.filename : req.body.image ),
+		// favorite_movie_id : req.body.favourite_movie_id,
+		edad       : req.body.edad,
+		historia   : req.body.historia,
+
 	} )
 
 		.then( ( actor ) => res.json( { actor } ) );

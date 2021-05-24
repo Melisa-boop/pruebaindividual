@@ -25,7 +25,7 @@ controller.create = ( req, res ) =>
 		rating       : req.body.rating,
 		awards       : req.body.awards,
 		genre_id     : req.body.genre_id,
-		image        : req.files[0].filename,
+		image        : ( req.file ? req.file.filename : req.body.image ),
 		release_date : req.body.release_date,
 		length       : req.body.length,
 
@@ -42,7 +42,7 @@ controller.edit = ( req, res ) =>
 		rating       : req.body.rating,
 		awards       : req.body.awards,
 		genre_id     : req.body.genre_id,
-		image        : req.files[0].filename,
+		image        : ( req.file ? req.file.filename : req.body.image ),
 		release_date : req.body.release_date,
 		length       : req.body.length,
 

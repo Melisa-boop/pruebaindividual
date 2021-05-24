@@ -24,6 +24,7 @@ controller.register = async ( req, res ) =>
 	{
 		const user = await db.User.create( {
 			name       : req.body.name,
+			last_name  : req.body.last_name,
 			email      : req.body.email,
 			password   : bcrypt.hashSync( req.body.password, 12 ),
 			repassword : bcrypt.hashSync( req.body.password, 12 ),
@@ -57,6 +58,7 @@ controller.login = async ( req, res ) =>
 			{
 				return res.json( { success: this.createToken( user ) } );
 			}
+			return res.json( { e: `error en el usuario y/o contrasena` } );
 		}
 	}
 	catch ( e )
