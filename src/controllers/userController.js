@@ -1,3 +1,4 @@
+/* eslint-disable consistent-return */
 // Database
 const db = require( `../database/models/index` );
 const bcrypt = require( `bcrypt` );
@@ -37,18 +38,31 @@ controller.register = async ( req, res ) =>
 };
 
 controller.login = async ( req, res ) =>
+
 {
-	const user = await db.User.findOne( { where: { email: req.body.email } } );
-	if ( user )
+	// Validamos los datos del login por el post
+	const errors = validationResult( req );
+	if ( !errors.isEmpty() )
 	{
-		const iguales = bcrypt.compareSync( req.body.password, user.password );
-		if ( iguales )
-		{
-			return res.json( { success: this.createToken( user ) } );
-		}
+		return res.status( 422 ).json( { error: errors.mapped() } );
 	}
 
-	return res.json( { error: `error en el usuario y/o contrasena` } );
+	try
+	{
+		const user = await db.User.findOne( { where: { email: req.body.email } } );
+		if ( user )
+		{
+			const iguales = bcrypt.compareSync( req.body.password, user.password );
+			if ( iguales )
+			{
+				return res.json( { success: this.createToken( user ) } );
+			}
+		}
+	}
+	catch ( e )
+	{
+		return res.json( { e: `error en el usuario y/o contrasena` } );
+	}
 };
 
 controller.createToken = ( user ) =>

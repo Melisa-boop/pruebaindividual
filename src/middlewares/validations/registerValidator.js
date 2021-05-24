@@ -21,7 +21,7 @@ module.exports = [
 		.withMessage( `Debes ingresar un email válido` )
 		.custom( async ( email ) =>
 		{
-			const registeredEmail = await db.Usuario.findOne( { where: { email } } );
+			const registeredEmail = await db.User.findOne( { where: { email } } );
 			if ( registeredEmail )
 			{
 				throw new Error( `Este email ya está registrado` );
@@ -37,7 +37,7 @@ module.exports = [
 		.notEmpty().withMessage( `El campo no puede estar vacío` )
 		.isLength( { min: 8, max: 15 } )
 		.withMessage( `La contraseña debe contener como mínimo 8 caracteres` )
-		.custom( ( repassword, { req } ) =>
+		.custom( async ( repassword, { req } ) =>
 		{
 			const { password } = req.body;
 			if ( password !== repassword )
