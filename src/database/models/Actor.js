@@ -1,6 +1,6 @@
 module.exports = ( sequelize, dataTypes ) =>
 {
-	const alias = `Actor`;// nombre del modelo que le cedi a models( la BBDD se llama notes)
+	const alias = `Actor`;
 
 	const cols = {
 		id: {

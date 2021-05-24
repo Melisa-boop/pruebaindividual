@@ -8,12 +8,12 @@ const {
 
 module.exports = {
 	development: {
-		username : `root`,
-		password : null,
-		database : `movies_db`, // nombre de la BBDD
+		username : DB_USERNAME,
+		password : DB_PASSWORD,
+		database : DB_NAME, // nombre de la BBDD
 		host     : DB_HOST,
 		dialect  : `mysql`,
-		port     : 3306,
+		port     : DB_PORT,
 		define   : {
 			timestamps  : true,
 			underscored : true,
@@ -22,7 +22,7 @@ module.exports = {
 	test: {
 		username : DB_USERNAME,
 		password : DB_PASSWORD,
-		database : `movies_db`,
+		database : DB_NAME,
 		host     : DB_HOST,
 		dialect  : `mysql`,
 		port     : DB_PORT,
@@ -34,7 +34,7 @@ module.exports = {
 	production: {
 		username : DB_USERNAME,
 		password : DB_PASSWORD,
-		database : `movies_db`,
+		database : DB_NAME,
 		host     : DB_HOST,
 		dialect  : `mysql`,
 		port     : DB_PORT,
