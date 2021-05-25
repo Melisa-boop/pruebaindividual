@@ -4,9 +4,9 @@ module.exports = ( sequelize, dataTypes ) =>
 
 	const cols = {
 		id: {
-			type          : dataTypes.INTEGER,
-			primaryKey    : true,
-			autoIncrement : true,
+			type       : dataTypes.INTEGER,
+			primaryKey : true,
+			// autoIncrement : true,
 		},
 		first_name: {
 			type: dataTypes.STRING,

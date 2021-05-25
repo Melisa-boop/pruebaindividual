@@ -60,12 +60,14 @@ controller.update = ( req, res ) =>
 
 controller.delete = ( req, res ) =>
 {
+	console.log( req.params.id );
 	db.Actor.destroy( {
 
 	},
 	{
 		where: {
 			id: req.params.id,
+
 		},
 	} )
 		.then( () => res.json( { success: `se ha borrado la pelicula` } ) )
@@ -75,7 +77,9 @@ controller.delete = ( req, res ) =>
 // creacion de actores  POST
 controller.create = ( req, res ) =>
 {
+	console.log( req.body );
 	db.Actor.create( {
+		id         : req.body.id,
 		first_name : req.body.first_name,
 		last_name  : req.body.last_name,
 		image      : ( req.file ? req.file.filename : req.body.image ),

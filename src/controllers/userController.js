@@ -38,6 +38,16 @@ controller.register = async ( req, res ) =>
 	}
 };
 
+const createToken = ( user ) =>
+{
+	const payload = {
+		usuarioId : user.id, // encripto el token
+		createdAt : moment().unix(),
+		expiredAt : moment().add( 10, `minutes` ).unix(),
+	};
+
+	return jwt.encode( payload, `frase secreta` );// me devuelve el token
+};
 controller.login = async ( req, res ) =>
 
 {
@@ -56,25 +66,17 @@ controller.login = async ( req, res ) =>
 			const iguales = bcrypt.compareSync( req.body.password, user.password );
 			if ( iguales )
 			{
-				return res.json( { success: this.createToken( user ) } );
+				return res.json( { success: createToken( user ) } );
 			}
 			return res.json( { e: `error en el usuario y/o contrasena` } );
 		}
 	}
 	catch ( e )
+
 	{
+		console.log( e );
 		return res.json( { e: `error en el usuario y/o contrasena` } );
 	}
 };
 
-controller.createToken = ( user ) =>
-{
-	const payload = {
-		usuarioId : user.id, // encripto el token
-		createdAt : moment().unix(),
-		expiredAt : moment().add( 5, `minutes` ).unix(),
-	};
-
-	return jwt.encode( payload, `frase secreta` );// me devuelve el token
-};
 module.exports = controller;

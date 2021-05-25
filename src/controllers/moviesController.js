@@ -62,7 +62,7 @@ controller.delete = ( req, res ) =>
 	db.Movie.destroy( {
 		where: { id: req.params.id },
 	} )
-		.then( () => res.json( { success: `la pelicila ha sido eliminada` } ) );
+		.then( () => res.json( { success: `la pelicula ha sido eliminada` } ) );
 };
 
 controller.detail = ( req, res ) =>
