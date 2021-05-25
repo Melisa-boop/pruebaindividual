@@ -68,14 +68,14 @@ controller.login = async ( req, res ) =>
 			{
 				return res.json( { success: createToken( user ) } );
 			}
-			return res.json( { e: `error en el usuario y/o contrasena` } );
+			return res.status( 400 ).json( { e: `error en el usuario y/o contrasena` } );
 		}
 	}
 	catch ( e )
 
 	{
 		console.log( e );
-		return res.json( { e: `error en el usuario y/o contrasena` } );
+		return res.status( 500 ).json( { e: `error en el usuario y/o contrasena` } );
 	}
 };
 
